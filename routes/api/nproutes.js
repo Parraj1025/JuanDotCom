@@ -4,8 +4,8 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.post('/posts',(req,res) => {
-   const table = new NewPost.create({
+router.post('/',(req,res) => {
+    NewPost.create({
         username: req.body.username,
         post: req.body.post
     })
