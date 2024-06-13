@@ -4,9 +4,17 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.post('/',(req,res) => {
-   const posted = new NewPost(req.body.username, req.body.post)
-    res.send(posted)
-})
+router.post('/api',(req,res) => {
+    NewPost.create({
+        username: req.body.username,
+        post: req.body.post
+    })
+    .then((newPost) => {
+        res.json(newPost)
+    })
+    .catch((err) => {
+        res.status(500).json(err)
+    })
+} )
 
 module.exports = NewPost
