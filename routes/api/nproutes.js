@@ -1,11 +1,10 @@
 const router = require ('express').Router();
 
-const { Model, Datatypes } = require('sequelize');
 const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.post('/post',(req,res) => {
+router.post('/posts',(req,res) => {
     NewPost.create({
         id: Datatypes.INTEGER,
         username: Datatypes.STRING,
@@ -19,4 +18,4 @@ router.post('/post',(req,res) => {
     })
 } )
 
-module.exports = NewPost
+module.exports = NewPos,t
