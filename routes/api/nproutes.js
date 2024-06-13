@@ -6,9 +6,8 @@ const NewPost = require('../../models/posts');
 
 router.post('/posts',(req,res) => {
     NewPost.create({
-        id: Datatypes.INTEGER,
-        username: Datatypes.STRING,
-        post: Datatypes.STRING
+        username: req.body.username,
+        post: req.body.post
     })
     .then((newPost) => {
         res.json(newPost)
