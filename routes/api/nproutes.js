@@ -5,7 +5,7 @@ const sequelize = require('../../config/connection')
 const NewPost = require('../../models/posts');
 
 router.post('/posts',(req,res) => {
-    NewPost.create({
+   const table = new NewPost.create({
         username: req.body.username,
         post: req.body.post
     })
