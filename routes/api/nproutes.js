@@ -17,4 +17,4 @@ router.post('/',(req,res) => {
     })
 } )
 
-module.exports = NewPost
+module.exports = router
