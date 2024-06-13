@@ -18,4 +18,4 @@ router.post('/posts',(req,res) => {
     })
 } )
 
-module.exports = NewPos,t
+module.exports = NewPost
