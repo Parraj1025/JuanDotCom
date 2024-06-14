@@ -4,12 +4,12 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.get('/', async (req,res) => 
+router.get('/posts', async (req,res) => 
    res.json(await NewPost.findAll())
 )
 
 
-router.post('/',(req,res) => {
+router.post('/posts',(req,res) => {
     NewPost.create({
         username: req.body.username,
         post: req.body.post

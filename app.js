@@ -19,6 +19,4 @@ sequelize.sync({force:false}).then(() => {
     })
 })
 
-app.listen(() => {
-    console.log('locked in baby')
-})
+
