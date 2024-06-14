@@ -4,6 +4,11 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
+router.get('/posts', async (req,res) => {
+    await res.json(NewPost.findAll())
+})
+
+
 router.post('/posts',(req,res) => {
     NewPost.create({
         username: req.body.username,
@@ -16,5 +21,6 @@ router.post('/posts',(req,res) => {
         res.status(500).json(err)
     })
 } )
+
 
 module.exports = router
