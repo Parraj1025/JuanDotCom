@@ -13,10 +13,12 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(routes)
 
-sequelize.sync({force:true}).then(() => {
+sequelize.sync({force:false}).then(() => {
     app.listen(PORT,()=> {
         console.log('listening')
     })
 })
 
-
+app.listen(PORT, () => {
+    console.log('locked in baby')
+})
