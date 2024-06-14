@@ -4,9 +4,9 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.get('/posts', async (req,res) => {
+router.get('/posts', async (req,res) => 
    res.json(await NewPost.findAll())
-})
+)
 
 
 router.post('/posts',(req,res) => {
