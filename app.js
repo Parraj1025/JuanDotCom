@@ -19,6 +19,6 @@ sequelize.sync({force:false}).then(() => {
     })
 })
 
-app.listen(PORT, () => {
+app.listen(() => {
     console.log('locked in baby')
 })
