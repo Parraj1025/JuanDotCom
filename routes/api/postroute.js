@@ -10,6 +10,7 @@ router.get('/posts', async (req,res) =>
 
 router.get('posts:id',async (req,res) => {
    const requestedpost = await NewPost.findByPk(1)
+   res.json(requestedpost)
 })
 
 router.post('/posts',(req,res) => {
