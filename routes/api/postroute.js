@@ -9,7 +9,7 @@ router.get('/posts', async (req,res) =>
 )
 
 router.get('/posts:id',async (req,res) => {
-   const requestedpost = await NewPost.findByPk(1)
+   const requestedpost = await NewPost.findByPk(req.body.id)
    res.json(requestedpost)
 })
 
