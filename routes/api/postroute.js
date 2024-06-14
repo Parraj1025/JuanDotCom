@@ -13,7 +13,7 @@ router.get('/posts:id',async (req,res) => {
    res.json(requestedpost)
 })
 
-router.post('/posts',(req,res) => {
+router.post('/posts:id',(req,res) => {
     NewPost.create({
         username: req.body.username,
         post: req.body.post
