@@ -8,6 +8,9 @@ router.get('/posts', async (req,res) =>
    res.json(await NewPost.findAll())
 )
 
+router.get('posts:id',async (req,res) => {
+   const requestedpost = await NewPost.findByPk(1)
+})
 
 router.post('/posts',(req,res) => {
     NewPost.create({
@@ -21,6 +24,9 @@ router.post('/posts',(req,res) => {
         res.status(500).json(err)
     })
 } )
+
+router.delete('/posts', (req,res) => {
+})
 
 
 module.exports = router
