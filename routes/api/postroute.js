@@ -13,7 +13,7 @@ router.get('/posts:id',async (req,res) => {
    res.json(requestedpost)
 })
 
-router.post('/posts:id',(req,res) => {
+router.post('/posts',(req,res) => {
     NewPost.create({
         username: req.body.username,
         post: req.body.post
@@ -26,7 +26,7 @@ router.post('/posts:id',(req,res) => {
     })
 } )
 
-router.delete('/posts', async (req,res) => {
+router.delete('/posts:id', async (req,res) => {
     const selectedID = req.body.id
     const affectedRows = await NewPost.destroy({
         where:{
