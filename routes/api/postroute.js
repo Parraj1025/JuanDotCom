@@ -26,8 +26,19 @@ router.post('/posts',(req,res) => {
     })
 } )
 
-router.delete('/posts', (req,res) => {
+router.delete('/posts', async (req,res) => {
+    const selectedID = req.params.id
+    const affectedRows = await NewPost.destroy({
+        where:{
+            id: selectedID
+        }
+    })
+    res.json({
+        message: affectedRows > 0 ? `${affectedRows} posts have been deleted` : 'no posts deleted'
+    })
 })
+    
+
 
 
 module.exports = router
