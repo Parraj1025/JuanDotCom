@@ -45,6 +45,9 @@ router.put('/posts', async (req,res) => {
             id: selectedPost
         }
     })
+    res.json({
+        message: affectedRows > 0 ? `${affectedRows}` : "nothing has changed"
+    })
 })
     
 
