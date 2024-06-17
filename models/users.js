@@ -9,6 +9,9 @@ User.init({
         primaryKey: true
     },
     password: DataTypes.STRING
+},{
+sequelize,
+modelName: "users"
 })
 
 module.exports = User;
