@@ -3,7 +3,7 @@ const sequelize = require('../config/connection');
 
 class Users extends Model {}
 
-User.init({
+Users.init({
     username:{
         type: DataTypes.STRING,
         primaryKey: true
