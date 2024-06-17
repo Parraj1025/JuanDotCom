@@ -38,15 +38,12 @@ router.delete('/posts:id', async (req,res) => {
     })
 })
 
-router.put('/posts', async (req,res) => {
-    const selectedPost = req.body.id
-    const affectedRows = await NewPost.update({
+router.put('/posts:id', async (req,res) => {
+    const id = req.params.id
+    const affectedRows = await NewPost.update(req.body,{
         where: {
-            id: selectedPost
+            id: id
         }
-    })
-    res.json({
-        message: affectedRows > 0 ? `${affectedRows}` : "nothing has changed"
     })
 })
     
