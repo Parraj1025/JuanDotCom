@@ -10,3 +10,5 @@ User.init({
     },
     password: Datatypes.STRING
 })
+
+module.exports = User;
