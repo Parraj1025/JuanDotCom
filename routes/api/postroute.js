@@ -37,6 +37,15 @@ router.delete('/posts:id', async (req,res) => {
         message: affectedRows > 0 ? `${affectedRows} posts have been deleted` : 'no posts deleted'
     })
 })
+
+router.put('/posts', async (req,res) => {
+    const selectedPost = req.body.id
+    const affectedRows = await NewPost.update({
+        where: {
+            id: selectedPost
+        }
+    })
+})
     
 
 
