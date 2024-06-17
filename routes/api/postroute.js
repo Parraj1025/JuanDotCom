@@ -21,7 +21,7 @@ router.post('/posts',(req,res) => {
     })
 } )
 
-router.delete('/posts/:id', async (req,res) => {
+router.delete('/:id', async (req,res) => {
     const selectedID = req.params.id
     const affectedRows = await NewPost.destroy({
         where:{
@@ -33,7 +33,7 @@ router.delete('/posts/:id', async (req,res) => {
     })
 })
 
-router.put('/posts/:id', async (req,res) => {
+router.put('/:id', async (req,res) => {
     const selectedID = req.params.id
     const affectedRows = await NewPost.update(req.body,{
         where: {
