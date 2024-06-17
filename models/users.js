@@ -12,6 +12,7 @@ Users.init({
         type: DataTypes.STRING
     }},
 {
+timestamps:false,
 sequelize,
 modelName: "users"
 })
