@@ -15,6 +15,16 @@ router.post('/users', (req,res) => {
     .catch((err) => {res.status(500).json(err)})
 })
 
+router.delete('/users/:id',(req,res) => {
+    const selectedID = req.params.body;
+    const affectedRows = Users.destroy({
+        where: {
+            id: selectedID
+        }
+    })
+    res.json('yes')
+})
+
 
 
 module.exports = router
