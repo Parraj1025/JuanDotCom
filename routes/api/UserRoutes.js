@@ -14,3 +14,5 @@ router.post('/Users', (req,res) => {
 router.get('/Users', async (req,res) => {
     res.json(await User.findAll())
 })
+
+module.exports = router
