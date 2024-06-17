@@ -1,9 +1,9 @@
 const router = require('express').router();
 const sequelize = require('../../config/connection');
-const User = require('../../models/users');
+const Users = require('../../models/users');
 
 router.post('/user', (req,res) => {
-    User.create({
+    Users.create({
         username: req.body.username,
         password: req.body.password
     })
@@ -12,7 +12,7 @@ router.post('/user', (req,res) => {
 })
 
 router.get('/user', async (req,res) => {
-    res.json(await User.findAll())
+    res.json(await Users.findAll())
 })
 
 module.exports = router
