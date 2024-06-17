@@ -16,10 +16,10 @@ router.post('/users', (req,res) => {
 })
 
 router.delete('/users/:id',(req,res) => {
-    const selectedID = req.params.body;
+    const selectedUsername = req.params.body;
     const affectedRows = Users.destroy({
         where: {
-            id: selectedID
+            username: selectedUsername
         }
     })
     res.json('yes')
