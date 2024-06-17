@@ -1,14 +1,14 @@
-const { Model, Datatypes} = require('sequelize');
+const { Model, DataTypes} = require('sequelize');
 const sequelize = require('../config/connection');
 
 class User extends Model {};
 
 User.init({
     username:{
-        type: Datatypes.STRING,
+        type: DataTypes.STRING,
         primaryKey: true
     },
-    password: Datatypes.STRING
+    password: DataTypes.STRING
 })
 
 module.exports = User;
