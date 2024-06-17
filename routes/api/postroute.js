@@ -8,11 +8,6 @@ router.get('/posts', async (req,res) =>
    res.json(await NewPost.findAll())
 )
 
-router.get('/posts:id',async (req,res) => {
-   const requestedpost = await NewPost.findByPk(req.body.id)
-   res.json(requestedpost)
-})
-
 router.post('/posts',(req,res) => {
     NewPost.create({
         username: req.body.username,
@@ -26,7 +21,7 @@ router.post('/posts',(req,res) => {
     })
 } )
 
-router.delete(':/id', async (req,res) => {
+router.delete('/posts/:id', async (req,res) => {
     const selectedID = req.body.id
     const affectedRows = await NewPost.destroy({
         where:{
@@ -38,7 +33,7 @@ router.delete(':/id', async (req,res) => {
     })
 })
 
-router.put('/:id', async (req,res) => {
+router.put('/posts/:id', async (req,res) => {
     const id = req.params.id
     const affectedRows = await NewPost.update(req.body,{
         where: {
