@@ -22,7 +22,7 @@ router.post('/posts',(req,res) => {
 } )
 
 router.delete('/posts/:id', async (req,res) => {
-    const selectedID = req.body.id
+    const selectedID = req.params.id
     const affectedRows = await NewPost.destroy({
         where:{
             id: selectedID
@@ -34,12 +34,13 @@ router.delete('/posts/:id', async (req,res) => {
 })
 
 router.put('/posts/:id', async (req,res) => {
-    const id = req.params.id
+    const selectedID = req.params.id
     const affectedRows = await NewPost.update(req.body,{
         where: {
-            id: id
+            id: selectedID
         }
     })
+    res.json({message:'letsgo'})
 })
     
 
