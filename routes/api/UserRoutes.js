@@ -2,11 +2,11 @@ const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const Users = require('../../models/users');
 
-router.get('/userss', async (req,res) => {
+router.get('/users', async (req,res) => {
     res.json(await Users.findAll())
 })
 
-router.post('/userss', (req,res) => {
+router.post('/users', (req,res) => {
     Users.create({
         username: req.body.username,
         password: req.body.password
