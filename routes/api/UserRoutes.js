@@ -15,7 +15,7 @@ router.post('/users', (req,res) => {
     .catch((err) => {res.status(500).json(err)})
 })
 
-router.delete('/:user', async (req,res) => {
+router.delete('/:selectedUser', async (req,res) => {
     const selectedUser = req.params.user;
     const affectedRows = await Users.destroy({
         where: {
