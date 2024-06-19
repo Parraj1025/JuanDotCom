@@ -82,10 +82,9 @@ router.put('/posts', async (req, res) => {
             res.status(500).json('cant delete if you dont pick a post and update it')
         }
 
-        const updatingPost = await NewPost.update({
+        const updatingPost = await NewPost.update({post},{
             where: {
                 id: id,
-                post: post
             }
         })
 
