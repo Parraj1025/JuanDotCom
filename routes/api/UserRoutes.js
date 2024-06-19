@@ -9,10 +9,12 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', (req, res) => {
-    if (req.params.username && req.params.password) {
+    const newUsername = req.params.username
+    const newUserpassword = req.params.password
+    if (newUsername && newUserpassword) {
         Users.create({
-            username: req.body.username,
-            password: req.body.password
+            username: newUsername,
+            password: newUserpassword
         
         })
         res.json(`${username} has been added`)
