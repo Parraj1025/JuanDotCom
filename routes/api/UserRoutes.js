@@ -9,8 +9,8 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', (req, res) => {
-    const newUsername = req.params.username
-    const newUserpassword = req.params.password
+    const newUsername = req.body.username
+    const newUserpassword = req.body.password
     if (newUsername && newUserpassword) {
         Users.create({
             username: newUsername,
