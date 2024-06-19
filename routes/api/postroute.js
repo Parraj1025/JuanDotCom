@@ -36,16 +36,31 @@ router.post('/posts', async (req, res) => {
 
 })
 
-router.delete('/:id', async (req, res) => {
-    const selectedID = req.params.id
-    const affectedRows = await NewPost.destroy({
-        where: {
-            id: selectedID
+router.delete('/posts', async (req, res) => {
+    try {
+        const selectedPost = req.body
+
+        if (!selectedPost) {
+            res.status(500).json('no post selected')
         }
-    })
-    res.json({
-        message: affectedRows > 0 ? `${affectedRows} posts have been deleted` : 'no posts deleted'
-    })
+
+        const deletedPost = await NewPost.destroy({
+            where: {
+                id: selectedPost
+            }
+        })
+
+        if (deletedPost) {
+            res.status(200).json('post has been deleted')
+        }
+        else {
+            res.json('unable to delete post')
+        }
+    }
+    catch (error) {
+        res.status(500).json('broke it...')
+    }
+
 })
 
 router.put('/:id', async (req, res) => {
