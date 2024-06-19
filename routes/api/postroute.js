@@ -62,14 +62,31 @@ router.delete('/posts', async (req, res) => {
     }
 })
 
-router.put('/:id', async (req, res) => {
-    const selectedID = req.params.id
-    const affectedRows = await NewPost.update(req.body, {
-        where: {
-            id: selectedID
+router.put('/posts', async (req, res) => {
+    try{
+        const {id,post} = req.body
+        if (!id || post) {
+            res.status(500).json('cant delete if you dont pick a post and update it')
         }
-    })
-    res.json({ message: 'letsgo' })
+
+        const updatingPost = await NewPost.update({
+            where: {
+                id: id,
+                post: post
+            }
+        })
+
+        if (updatingPost) {
+            res.status(200).json('updatedpost')
+        }
+        else{
+            res.status(500).json('unable to update post')
+        }
+    }
+    catch (error) {
+        res.status(500).json('broke it')
+    }
+
 })
 
 
