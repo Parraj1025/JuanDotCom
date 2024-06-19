@@ -9,15 +9,16 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', (req, res) => {
-    try {
+    if (req.params.username && req.params.password) {
         Users.create({
             username: req.body.username,
             password: req.body.password
+        
         })
+        res.json(`${username} has been added`)
     }
-
-    catch (error) {
-        res.status(500).json('wrong bur right', error)
+    else{
+        res.status(500).json('nope')
     }
 
 })
