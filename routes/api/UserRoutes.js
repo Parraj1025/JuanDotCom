@@ -7,17 +7,25 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', (req, res) => {
-    Users.create({
-        username: req.body.username,
-        password: req.body.password
-    })
-        .then((newUser) => { res.json(`${newUser.username} has been added`) })
-        .catch((err) => { res.status(500).json('i did it', err) })
-    
+    try {
+        Users.create({
+            username: req.body.username,
+            password: req.body.password
+        })
+        if (password == null) {
+            res.json(`password cant be empty`)
+        }
+        else {
+            res.json(`${username} has been added`)
+        }
+    }
+    catch {
+        res.status(500).json('wrong bur right')
+    }
 })
 
 router.delete('/users/:username', async (req, res) => {
-     try {
+    try {
         const selectedUser = req.params.username;
         const deletedUser = await Users.destroy({
             where: {
@@ -28,14 +36,14 @@ router.delete('/users/:username', async (req, res) => {
         if (deletedUser) {
             res.json(`${selectedUser} has been deleted`)
         }
-        else{
+        else {
             res.json('User does not exist')
         }
-     }
-     catch (error) {
+    }
+    catch (error) {
         console.error('doesnt work', error);
         res.status(123).json('db down')
-     }
+    }
 })
 
 
