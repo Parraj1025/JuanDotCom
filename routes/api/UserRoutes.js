@@ -14,13 +14,6 @@ router.post('/users', (req, res) => {
             username: req.body.username,
             password: req.body.password
         })
-        res.json(`${username} has been added`)
-        if (!req.body.password) {
-            res.json('you thought')
-        }
-        else{
-            res.json(`${username} has been added`)
-        }
     }
 
     catch (error) {
