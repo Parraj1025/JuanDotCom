@@ -13,7 +13,7 @@ router.get('/posts', async (req, res) => {
         res.status(500).json('unable posts to load')
        }
        else {
-        res.status(200).json(`here they are ${allPosts}`)
+        res.status(200).json(allPosts)
        }
     }
     catch (error){
