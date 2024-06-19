@@ -9,7 +9,8 @@ Users.init({
         primaryKey: true
     },
     password: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     }},
 {
 timestamps:false,
