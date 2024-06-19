@@ -17,7 +17,7 @@ router.post('/users', (req, res) => {
 
 router.delete('/users/:username', async (req, res) => {
      try {
-        const selectedUser = req.params.username,
+        const selectedUser = req.params.username;
         const deletedUser = await Users.destroy({
             where: {
                 username: selectedUser
