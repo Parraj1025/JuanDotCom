@@ -63,7 +63,7 @@ router.put('/users', async (req,res) => {
 
     const hashedPassword = bcrypt.hash(newPassword,10)
     
-    Users.update({password: hashedPassword},{
+    Users.update({password: await hashedPassword},{
         where: {
             username: username
         }
