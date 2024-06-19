@@ -81,19 +81,11 @@ router.put('/posts', async (req, res) => {
         if (!id || post) {
             res.status(500).json('cant delete if you dont pick a post and update it')
         }
-
-        const updatingPost = await NewPost.update({post},{
+        NewPost.update({post},{
             where: {
                 id: id,
             }
-        })
-
-        if (updatingPost) {
-            res.status(200).json('updatedpost')
-        }
-        else{
-            res.status(500).json('unable to update post')
-        }
+        }).then(res.status(200).json('post is updated'))
     }
     catch (error) {
         res.status(500).json('broke it')
