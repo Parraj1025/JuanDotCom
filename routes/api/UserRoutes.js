@@ -7,17 +7,13 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', (req, res) => {
-    try {
     Users.create({
         username: req.body.username,
         password: req.body.password
     })
-        .then((newUser) => { res.json(newUser) })
-        .catch((err) => { res.status(500).json(err) })
-    }
-    catch{
-        res.status(123).json('nopeee')
-    }
+        .then((newUser) => { res.json(`${newUser.username} has been added`) })
+        .catch((err) => { res.status(500).json('i did it', err) })
+    
 })
 
 router.delete('/users/:username', async (req, res) => {
