@@ -61,9 +61,9 @@ router.put('/users', async (req,res) => {
         res.status(200).json('nothing to update')
     ]
 
-    const hashedPassword = bcrypt.hash(newpassword,10)
+    const hashedPassword = bcrypt.hash(newPassword,10)
     
-    const updatepass = await Users.update({password: hashedPassword},{
+    Users.update({password: hashedPassword},{
         where: {
             username: username
         }
