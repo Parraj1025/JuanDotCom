@@ -55,15 +55,15 @@ router.delete('/users/:username', async (req, res) => {
 
 router.put('/users', async (req,res) => {
     try {
-    const {username , newpassword} = req.body
+    const {username , newPassword} = req.body
 
-    if(!username || !newpassword) [
+    if(!username || !newPassword) [
         res.status(200).json('nothing to update')
     ]
 
     const hashedPassword = bcrypt.hash(newpassword,10)
     
-    Users.update({password: hashedPassword},{
+    const updatepass = await Users.update({password: hashedPassword},{
         where: {
             username: username
         }
