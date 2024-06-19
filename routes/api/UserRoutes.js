@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { error } = require('console');
 const sequelize = require('../../config/connection');
 const Users = require('../../models/users');
 
@@ -22,8 +23,8 @@ router.post('/users', (req, res) => {
 
 
     }
-    catch {
-        res.status(500).json('wrong bur right')
+    catch (error) {
+        res.status(500).json('wrong bur right',error)
     }
 })
 
