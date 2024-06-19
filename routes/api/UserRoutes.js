@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs')
 const router = require('express').Router();
 const { error } = require('console');
 const sequelize = require('../../config/connection');
@@ -9,26 +10,25 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', async (req, res) => {
-   
     try {
-        const newUser = req.body.username
-        const newPassword = req.body.password
-        const WelcomeUser = await Users.create({
-            username: newUser,
-            password: newPassword
-        })
-        if (WelcomeUser) {
-            res.json('yup')
-        }
-        else{
-            res.json(`nahh`)
-        }
+    const { username, password } = req.body;
+    if (!username || !password) {
+        return res.status(500).json('maaaaan')
     }
+    const hashedPassword = await bcrypt.hash(password, 10)
+    const newUser = await Users.create({
+        username,
+        password: hashedPassword
+    })
 
+    if (newUser) {
+        res.status(200).json(`${username} has been added`)
+    }
+    else {
+        res.status(500).json('not possible to create user')
+    }}
     catch (error) {
-        res.status(500).json('wrong bur right', error)
-    }
-
+        res.status(500).json('broken')    }
 })
 
 router.delete('/users/:username', async (req, res) => {
