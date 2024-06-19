@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { error } = require('console');
 const sequelize = require('../../config/connection');
 const Users = require('../../models/users');
+const { userInfo } = require('os');
 
 router.get('/users', async (req, res) => {
     res.json(await Users.findAll())
@@ -16,6 +17,9 @@ router.post('/users', (req, res) => {
         res.json(`${username} has been added`)
         if (!req.body.password) {
             res.json('you thought')
+        }
+        else{
+            res.json(`${username} has been added`)
         }
     }
 
