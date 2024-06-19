@@ -13,7 +13,7 @@ router.get('/posts', async (req, res) => {
         res.status(500).json('unable posts to load')
        }
        else {
-        res.status(200).json(allPosts)
+        res.status(200).json(`here they are ${allPosts}`)
        }
     }
     catch (error){
@@ -78,14 +78,15 @@ router.delete('/posts', async (req, res) => {
 router.put('/posts', async (req, res) => {
     try{
         const {id,post} = req.body
-        if (!id || post) {
+        if (!id || !post) {
             res.status(500).json('cant delete if you dont pick a post and update it')
         }
-        NewPost.update({post},{
+
+        NewPost.update(post,{
             where: {
                 id: id,
             }
-        }).then(res.status(200).json('post is updated'))
+        }).then(res.status(200).json('post updated'))
     }
     catch (error) {
         res.status(500).json('broke it')
