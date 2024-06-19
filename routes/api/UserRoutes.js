@@ -17,11 +17,11 @@ router.post('/users', async (req, res) => {
             username: newUser,
             password: newPassword
         })
-        if (!WelcomeUser) {
-            res.json('nope')
+        if (WelcomeUser) {
+            res.json('yup')
         }
         else{
-            res.json(`welcome ${newUser}`)
+            res.json(`nahh`)
         }
     }
 
