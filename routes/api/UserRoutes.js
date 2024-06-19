@@ -53,5 +53,25 @@ router.delete('/users/:username', async (req, res) => {
     }
 })
 
+router.put('/users', async (req,res) => {
+    try {
+    const {username , newpassword} = req.body
+
+    if(!username || !newpassword) [
+        res.status(200).json('nothing to update')
+    ]
+
+    const password = bcrypt.hash(newpassword)
+    
+    Users.update({password},{
+        where: {
+            username: username
+        }
+    }).then(res.status(200).json('password changed'))
+}
+catch{
+    res.status(500).json('broke it')
+}
+})
 
 module.exports = router
