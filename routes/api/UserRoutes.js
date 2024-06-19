@@ -16,18 +16,26 @@ router.post('/users', (req, res) => {
 })
 
 router.delete('/users/:username', async (req, res) => {
-    const selectedUser = req.params.username;
-        const affectedRows = await Users.destroy({
+     try {
+        const selectedUser = req.params.username,
+        const deletedUser = await Users.destroy({
             where: {
                 username: selectedUser
             }
-        })
-        res.json(`${affectedRows} has been deletd`).catch((err) => {
-            res.send('juan')
-        })
-    
+        }
+        )
+        if (deletedUser) {
+            res.json(`${selectedUser} has been deleted`)
+        }
+        else{
+            res.json('User does not exist')
+        }
+     }
+     catch (error) {
+        console.error('doesnt work', error);
+        res.status(123).json('db down')
+     }
 })
-
 
 
 module.exports = router
