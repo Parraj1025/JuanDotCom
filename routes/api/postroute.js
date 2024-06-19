@@ -38,15 +38,15 @@ router.post('/posts', async (req, res) => {
 
 router.delete('/posts', async (req, res) => {
     try {
-        const selectedPost = req.body
+        const { id } = req.body
 
-        if (!selectedPost) {
+        if (!id) {
             return res.status(500).json('no post selected')
         }
 
         const deletedPost = await NewPost.destroy({
             where: {
-                id: selectedPost
+                id: id
             }
         })
 
@@ -60,7 +60,6 @@ router.delete('/posts', async (req, res) => {
     catch (error) {
         res.status(500).json('broke it...')
     }
-
 })
 
 router.put('/:id', async (req, res) => {
