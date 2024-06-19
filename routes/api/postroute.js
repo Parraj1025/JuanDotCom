@@ -85,6 +85,7 @@ router.put('/posts', async (req, res) => {
         NewPost.update(post,{
             where: {
                 id: id,
+                post: post
             }
         }).then(res.status(200).json('post updated'))
     }
