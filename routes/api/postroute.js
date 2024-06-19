@@ -5,8 +5,21 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.get('/posts', async (req, res) =>
-    res.json(await NewPost.findAll())
+router.get('/posts', async (req, res) => {
+    try{
+       const allPosts = await NewPost.findAll()
+
+       if (!allPosts){
+        res.status(500).json('unable posts to load')
+       }
+       else {
+        res.status(200).json(`here they are ${allPosts}`)
+       }
+    }
+    catch (error){
+        res.status(500).json('broke it')
+    }
+}
 )
 
 router.post('/posts', async (req, res) => {
