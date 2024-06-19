@@ -8,7 +8,7 @@ router.get('/users', async (req, res) => {
 
 router.post('/users', (req, res) => {
     try {
-        if (password == null) {
+        if (req.body.password == null) {
             res.json(`password cant be empty`)
         }
         else {
