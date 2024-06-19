@@ -17,17 +17,15 @@ router.post('/users', (req, res) => {
 
 router.delete('/users/:username', async (req, res) => {
     const selectedUser = req.params.username;
-    if (selectedUser == null) {
-        res.json('no user selected to be deleted')
-    }
-    else {
         const affectedRows = await Users.destroy({
             where: {
                 username: selectedUser
             }
         })
-        res.json(`${affectedRows} has been deletd`)
-    }
+        res.json(`${affectedRows} has been deletd`).catch((err) => {
+            res.send('juan')
+        })
+    
 })
 
 
