@@ -8,13 +8,21 @@ router.get('/users', async (req, res) => {
     res.json(await Users.findAll())
 })
 
-router.post('/users', (req, res) => {
+router.post('/users', async (req, res) => {
+   
     try {
-        Users.create({
-            username: req.body.username,
-            password: req.body.password
+        const newUser = req.body.username
+        const newPassword = req.body.password
+        const WelcomeUser = await Users.create({
+            username: newUser,
+            password: newPassword
         })
-        res.json(`${username} has been added`)
+        if (!WelcomeUser) {
+            res.json('nope')
+        }
+        else{
+            res.json(`welcome ${newUser}`)
+        }
     }
 
     catch (error) {
