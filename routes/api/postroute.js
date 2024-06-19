@@ -5,27 +5,41 @@ const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.get('/posts', async (req,res) => 
-   res.json(await NewPost.findAll())
+router.get('/posts', async (req, res) =>
+    res.json(await NewPost.findAll())
 )
 
-router.post('/posts',(req,res) => {
-    NewPost.create({
-        username: req.body.username,
-        post: req.body.post
-    })
-    .then((newPost) => {
-        res.json(newPost)
-    })
-    .catch((err) => {
-        res.status(500).json(err)
-    })
-} )
+router.post('/posts', async (req, res) => {
+    try {
+        const { username, post } = req.body
 
-router.delete('/:id', async (req,res) => {
+        if (!username || !post) {
+            return res.json('you neeeed both')
+        }
+
+        const newPost = await NewPost.create({
+            username,
+            post
+        })
+
+        if (newPost) {
+            res.status(200).json('Thank you for posting')
+        }
+
+        else {
+            res.status(500).json('could not create post')
+        }
+    }
+    catch (error) {
+        res.status(500).json('broke it')
+    }
+
+})
+
+router.delete('/:id', async (req, res) => {
     const selectedID = req.params.id
     const affectedRows = await NewPost.destroy({
-        where:{
+        where: {
             id: selectedID
         }
     })
@@ -34,16 +48,16 @@ router.delete('/:id', async (req,res) => {
     })
 })
 
-router.put('/:id', async (req,res) => {
+router.put('/:id', async (req, res) => {
     const selectedID = req.params.id
-    const affectedRows = await NewPost.update(req.body,{
+    const affectedRows = await NewPost.update(req.body, {
         where: {
             id: selectedID
         }
     })
-    res.json({message:'letsgo'})
+    res.json({ message: 'letsgo' })
 })
-    
+
 
 
 
