@@ -41,7 +41,7 @@ router.delete('/posts', async (req, res) => {
         const selectedPost = req.body
 
         if (!selectedPost) {
-            res.status(500).json('no post selected')
+            return res.status(500).json('no post selected')
         }
 
         const deletedPost = await NewPost.destroy({
