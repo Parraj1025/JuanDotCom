@@ -74,4 +74,9 @@ catch{
 }
 })
 
+router.post('users/login', async (req,res) =>{
+    const {username , password} = req.body;
+    res.json('youre logged in')
+})
+
 module.exports = router
