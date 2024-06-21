@@ -16,7 +16,7 @@ Users.init({
     }},
 {
 hooks:{
-    beforeCreate: encryptedPassword(data),
+    beforeCreate: encryptedPassword,
     afterCreate : () => console.log('password encrypted')
 },
 timestamps:false,
