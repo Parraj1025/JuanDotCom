@@ -15,6 +15,16 @@ router.post('/users', async (req, res) => {
         if (!username || !password) {
             return res.status(500).json('you need both.....dont be lazy')
         }
+        const existingUser = await Users.findOne({
+            where: {
+                username
+            }
+        })
+
+        if (existingUser) {
+            res.status(200).json('use exists')
+        }
+ 
         const hashedPassword = await bcrypt.hash(password, 10)
         const newUser = await Users.create({
             username,
