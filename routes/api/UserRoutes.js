@@ -10,39 +10,46 @@ router.get('/users', async (req, res) => {
 })
 
 router.post('/users', async (req, res) => {
-    try {
-        const { username, password } = req.body;
-        if (!username || !password) {
-            return res.status(500).json('you need both.....dont be lazy')
+    const existinguser = await Users.findAll({
+        where: {
+            username: username
         }
-        const hashedPassword = await bcrypt.hash(password, 10)
-        const newUser = await Users.create({
-            username,
-            password: hashedPassword
-        })
+    })
 
-        const existinguser = await Users.findAll({
-            where: {
-                username:username
-            }
-        })
-
-        if (existinguser) {
+    if (existinguser) {
+        try {
             res.status(200).json(`${username} is not available`)
         }
-
-        if (newUser) {
-            res.status(200).json(`${username} has been added`)
-        }
-        else {
-            res.status(500).json('not possible to create user')
-        }
-
-       
-        
+        catch { res.status(500).json('broke it') }
     }
-    catch (error) {
-        res.status(500).json('broken')
+
+    else {
+
+        try {
+            const { username, password } = req.body;
+            if (!username || !password) {
+                return res.status(500).json('you need both.....dont be lazy')
+            }
+            const hashedPassword = await bcrypt.hash(password, 10)
+            const newUser = await Users.create({
+                username,
+                password: hashedPassword
+            })
+
+
+            if (newUser) {
+                res.status(200).json(`${username} has been added`)
+            }
+            else {
+                res.status(500).json('not possible to create user')
+            }
+
+
+
+        }
+        catch (error) {
+            res.status(500).json('broken')
+        }
     }
 })
 
@@ -103,7 +110,7 @@ router.post('/users/login', async (req, res) => {
         const isValidPassWord = await bcrypt.compare(password, userdata.password);
         isValidPassWord ? res.status(200).json(`${username}....welcome back`) : res.status(500).json('incorrect log in credentials')
 
-        
+
     }
     catch (error) {
         res.status(500).json('no info entered')
