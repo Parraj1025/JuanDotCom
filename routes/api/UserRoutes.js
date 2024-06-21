@@ -22,7 +22,7 @@ router.post('/users', async (req, res) => {
         })
 
         if (existingUser) {
-            res.status(200).json('use exists')
+            res.status(200).json('user already exists')
         }
  
         const hashedPassword = await bcrypt.hash(password, 10)
