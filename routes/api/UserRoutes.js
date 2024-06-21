@@ -24,11 +24,10 @@ router.post('/users', async (req, res) => {
         if (existingUser) {
             res.status(200).json('user already exists')
         }
- 
-        const hashedPassword = await bcrypt.hash(password, 10)
+        
         const newUser = await Users.create({
             username,
-            password: hashedPassword
+            password
         })
 
 
