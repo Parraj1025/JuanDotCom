@@ -16,7 +16,7 @@ Users.init({
 hooks:{
     beforeCreate: () =>
     console.log('new user added')
-};
+},
 timestamps:false,
 sequelize,
 modelName: "users"
