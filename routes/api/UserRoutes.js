@@ -27,6 +27,15 @@ router.post('/users', async (req, res) => {
         else {
             res.status(500).json('not possible to create user')
         }
+
+        const existinguser = await Users.findAll({
+            where: {
+                username:username
+            }
+        })
+        if (existinguser) {
+            res.status(200).json(`${username} is not available`)
+        }
     }
     catch (error) {
         res.status(500).json('broken')
