@@ -78,10 +78,12 @@ router.post('/users/login', async (req,res) =>{
     const {username, password} = req.body;
     const userdata = await Users.findOne({
         where: {
-            username
+            username,
         }
+
+
     })
-    res.json({message: 'youre logged in'})
+    res.json(`${username}... youre logged in!`)
 })
 
 module.exports = router
