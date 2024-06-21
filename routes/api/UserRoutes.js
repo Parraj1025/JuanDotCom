@@ -84,6 +84,8 @@ router.post('/users/login', async (req,res) =>{
     })
 
     if (!userdata) return res.status(200).json(`no user found`);
+
+    res.status(200).json(`${username}....welcome back`)
 }
 catch (error) {
     res.status(500).json('broke it')
