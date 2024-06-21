@@ -83,6 +83,7 @@ router.post('/users/login', async (req,res) =>{
     })
 
     if (!userdata) return res.json(`username/password not found`);
+    else res.json('hi')
 })
 
 module.exports = router
