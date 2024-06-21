@@ -11,24 +11,26 @@ router.get('/users', async (req, res) => {
 
 router.post('/users', async (req, res) => {
     try {
-    const { username, password } = req.body;
-    if (!username || !password) {
-        return res.status(500).json('you need both.....dont be lazy')
-    }
-    const hashedPassword = await bcrypt.hash(password, 10)
-    const newUser = await Users.create({
-        username,
-        password: hashedPassword
-    })
+        const { username, password } = req.body;
+        if (!username || !password) {
+            return res.status(500).json('you need both.....dont be lazy')
+        }
+        const hashedPassword = await bcrypt.hash(password, 10)
+        const newUser = await Users.create({
+            username,
+            password: hashedPassword
+        })
 
-    if (newUser) {
-        res.status(200).json(`${username} has been added`)
+        if (newUser) {
+            res.status(200).json(`${username} has been added`)
+        }
+        else {
+            res.status(500).json('not possible to create user')
+        }
     }
-    else {
-        res.status(500).json('not possible to create user')
-    }}
     catch (error) {
-        res.status(500).json('broken')    }
+        res.status(500).json('broken')
+    }
 })
 
 router.delete('/users/:username', async (req, res) => {
@@ -53,43 +55,46 @@ router.delete('/users/:username', async (req, res) => {
     }
 })
 
-router.put('/users', async (req,res) => {
+router.put('/users', async (req, res) => {
     try {
-    const {username , newPassword} = req.body
+        const { username, newPassword } = req.body
 
-    if(!username || !newPassword) [
-        res.status(200).json('nothing to update')
-    ]
+        if (!username || !newPassword) [
+            res.status(200).json('nothing to update')
+        ]
 
-    const hashedPassword = bcrypt.hash(newPassword,10)
-    
-    Users.update({password: await hashedPassword},{
-        where: {
-            username: username
-        }
-    }).then(res.status(200).json('password changed'))
-}
-catch{
-    res.status(500).json('broke it')
-}
+        const hashedPassword = bcrypt.hash(newPassword, 10)
+
+        Users.update({ password: await hashedPassword }, {
+            where: {
+                username: username
+            }
+        }).then(res.status(200).json('password changed'))
+    }
+    catch {
+        res.status(500).json('broke it')
+    }
 })
 
-router.post('/users/login', async (req,res) =>{
+router.post('/users/login', async (req, res) => {
     try {
-    const {username, password} = req.body;
-    const userdata = await Users.findOne({
-        where: {
-            username,
-        }
-    })
+        const { username, password } = req.body;
+        const userdata = await Users.findOne({
+            where: {
+                username,
+            }
+        })
 
-    if (!userdata) return res.status(200).json(`no user found`);
+        if (!userdata) return res.status(200).json(`no user found`);
 
-    res.status(200).json(`${username}....welcome back`)
-}
-catch (error) {
-    res.status(500).json('broke it')
-}
+        const isValidPassWord = await bcrypt.compare(password, userdata.password);
+        isValidPassWord ? res.status(200).json(`${username}....welcome back`) : res.status(500).json('incorrect log in credentials')
+
+        
+    }
+    catch (error) {
+        res.status(500).json('no info entered')
+    }
 })
 
 module.exports = router
