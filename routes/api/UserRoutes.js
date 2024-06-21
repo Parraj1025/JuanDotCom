@@ -80,10 +80,9 @@ router.post('/users/login', async (req,res) =>{
         where: {
             username,
         }
-
-
     })
-    res.json(`${username}... youre logged in!`)
+
+    if (!userdata) return res.json(`username/password not found`);
 })
 
 module.exports = router
