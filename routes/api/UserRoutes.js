@@ -90,6 +90,8 @@ router.put('/users', async (req, res) => {
             }
         })
 
+        console.log(existingUser)
+
         if (!existingUser) {
             res.status(200).json('user does not exist')
         }
@@ -102,7 +104,7 @@ router.put('/users', async (req, res) => {
 
         const updatedUser = await Users.update({password: newPassword},{
             where: {
-                username
+                username:username
             }
         })
 
