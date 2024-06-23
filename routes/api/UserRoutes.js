@@ -5,9 +5,13 @@ const sequelize = require('../../config/connection');
 const Users = require('../../models/users');
 const { userInfo } = require('os');
 
+//route to grab users from database
+
 router.get('/users', async (req, res) => {
     res.json(await Users.findAll())
 })
+
+//rpute to create a new username, checking for existing user and encrypting password
 
 router.post('/users', async (req, res) => {
     try {
@@ -24,7 +28,7 @@ router.post('/users', async (req, res) => {
         if (existingUser) {
             res.status(200).json('user already exists')
         }
-        
+
         const newUser = await Users.create({
             username,
             password
@@ -44,6 +48,9 @@ router.post('/users', async (req, res) => {
 }
 
 )
+
+//route to delete users
+
 
 router.delete('/users/:username', async (req, res) => {
     try {
@@ -67,7 +74,9 @@ router.delete('/users/:username', async (req, res) => {
     }
 })
 
-router.put('/users', async (req, res) => {
+//route to update user passwords
+
+router.put('/users', async (req,res) => {
     try {
         const { username, newPassword } = req.body
 
@@ -75,13 +84,19 @@ router.put('/users', async (req, res) => {
             res.status(200).json('nothing to update')
         ]
 
-        const hashedPassword = bcrypt.hash(newPassword, 10)
-
-        Users.update({ password: await hashedPassword }, {
+        const Userdata = await Users.update(newPassword,{
             where: {
-                username: username
-            }
-        }).then(res.status(200).json('password changed'))
+                username
+            },
+            individualHooks:true
+        })
+
+        if (Userdata) {
+            res.status(200).json("password has been changed")
+        }
+        else{
+            res.status(200).json("invalid username")
+        }
     }
     catch {
         res.status(500).json('broke it')
