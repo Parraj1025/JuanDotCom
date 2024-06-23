@@ -102,7 +102,7 @@ router.put('/users', async (req, res) => {
             res.json('existing password invalid')
         }
 
-        const updatedUser = await Users.update({password: bcrypt.hash(newPassword)},{
+        const updatedUser = await Users.update({password: await bcrypt.hash(newPassword,10)},{
             where: {
                 username:username
             }
