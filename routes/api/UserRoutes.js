@@ -86,7 +86,7 @@ router.put('/users', async (req, res) => {
 
         const existingUser = Users.findOne({
             where: {
-                username
+                username:username
             }
         })
 
