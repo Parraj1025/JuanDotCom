@@ -91,11 +91,11 @@ router.put('/users', async (req,res) => {
             individualHooks:true
         })
 
-        if (Userdata) {
-            res.status(200).json("password has been changed")
+        if (!Userdata) {
+            res.status(200).json("try again")
         }
         else{
-            res.status(200).json("invalid username")
+            res.status(200).json("password succesfully updated")
         }
     }
     catch {
