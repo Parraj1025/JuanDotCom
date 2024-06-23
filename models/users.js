@@ -17,7 +17,9 @@ Users.init({
 {
 hooks:{
     beforeCreate: encryptedPassword,
-    afterCreate : () => console.log('password encrypted')
+    afterCreate : () => console.log('Password Encrypted'),
+    beforeUpdate: encryptedPassword,
+    afterUpdate: () => {console.log('Password Updated')}
 },
 timestamps:false,
 sequelize,

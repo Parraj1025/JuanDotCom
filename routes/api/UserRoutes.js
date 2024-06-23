@@ -111,7 +111,7 @@ router.put('/users', async (req, res) => {
         if (!updatedUser) {
             res.status(200).json("password not updated changed")
         }
-        else{res.json('pass changed')}
+        else{res.json('Password Successfully changed')}
     }
     catch {
         res.status(500).json('broke it')
