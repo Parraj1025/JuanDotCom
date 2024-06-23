@@ -78,13 +78,13 @@ router.delete('/users/:username', async (req, res) => {
 
 router.put('/users', async (req,res) => {
     try {
-        const { username, newPassword } = req.body
+        const { username, password } = req.body
 
-        if (!username || !newPassword) [
+        if (!username || !password) [
             res.status(200).json('nothing to update')
         ]
 
-        const Userdata = await Users.update(newPassword,{
+        const Userdata = await Users.update(password{
             where: {
                 username
             },
