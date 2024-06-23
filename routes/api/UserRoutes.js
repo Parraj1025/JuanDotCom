@@ -100,7 +100,7 @@ router.put('/users', async (req, res) => {
             res.json('existing password invalid')
         }
 
-        const updatedUser = Users.update({password: newPassword},{
+        const updatedUser = await Users.update({password: newPassword},{
             where: {
                 username
             }
