@@ -86,7 +86,7 @@ router.put('/users', async (req,res) => {
 
         const Userdata = await Users.update(password,{
             where: {
-                username
+                username: username
             },
             individualHooks:true
         })
