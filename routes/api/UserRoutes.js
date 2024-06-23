@@ -84,7 +84,7 @@ router.put('/users', async (req, res) => {
             res.json('fill out all fields')
         }
 
-        const existingUser = Users.findOne({
+        const existingUser = await Users.findOne({
             where: {
                 username:username
             }
