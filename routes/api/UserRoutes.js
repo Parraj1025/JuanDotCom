@@ -84,7 +84,7 @@ router.put('/users', async (req,res) => {
             res.status(200).json('nothing to update')
         ]
 
-        const Userdata = await Users.update(password{
+        const Userdata = await Users.update(password,{
             where: {
                 username
             },
