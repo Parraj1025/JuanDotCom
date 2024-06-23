@@ -91,8 +91,8 @@ router.put('/users', async (req,res) => {
             individualHooks:true
         })
 
-        if (!Userdata) {
-            res.status(200).json("try again")
+        if (!Userdata[0]) {
+            res.status(200).json("no user to update, try again")
         }
         else{
             res.status(200).json("password succesfully updated")
