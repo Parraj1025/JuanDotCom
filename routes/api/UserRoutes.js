@@ -76,26 +76,38 @@ router.delete('/users/:username', async (req, res) => {
 
 //route to update user passwords
 
-router.put('/users', async (req,res) => {
+router.put('/users', async (req, res) => {
     try {
-        const { username, password } = req.body
+        const { username, currentPassword, newPassword } = req.body;
 
-        if (!username || !password) [
-            res.status(200).json('nothing to update')
-        ]
+        if (!username || !currentPassword || !newPassword) {
+            res.json('fill out all fields')
+        }
 
-        const Userdata = await Users.update(password,{
+        const existingUser = Users.findOne({
             where: {
-                username: username
-            },
-            individualHooks:true
+                username
+            }
         })
 
-        if (!Userdata[0]) {
-            res.status(200).json("no user to update, try again")
+        if (!existingUser) {
+            res.status(200).json('user does not exist')
         }
-        else{
-            res.status(200).json("password succesfully updated")
+
+        const validPassword = bcrypt.compare(currentPassword,existingUser.password);
+
+        if (!validPassword) {
+            res.json('existing password invalid')
+        }
+
+        const updatedUser = Users.update({password: newPassword},{
+            where: {
+                username
+            }
+        })
+
+        if (updatedUser) {
+            res.status(200).json("password successfully changed")
         }
     }
     catch {
