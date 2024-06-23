@@ -94,7 +94,7 @@ router.put('/users', async (req, res) => {
             res.status(200).json('user does not exist')
         }
 
-        const validPassword = bcrypt.compare(currentPassword,existingUser.password);
+        const validPassword = await bcrypt.compare(currentPassword,existingUser.password);
 
         if (!validPassword) {
             res.json('existing password invalid')
