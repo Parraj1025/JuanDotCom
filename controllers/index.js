@@ -8,7 +8,7 @@ router.use('/api', userRoutes)
 
 router.get("/", (req,res) => {
     try {
-        res.status(200).sendFile(path.join(__dirname,"../views"))
+        res.status(200).sendFile(path.join(__dirname,"../public/views"))
     }
     catch (error) {
         res.send()
