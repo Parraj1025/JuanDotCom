@@ -5,10 +5,11 @@ const path = require('path')
 
 router.use('/api', postRoutes);
 router.use('/api', userRoutes)
+app.use(express.static(path.join(__dirname, 'public')))
 
 router.get("/", (req,res) => {
     try {
-        res.status(200).sendFile(path.join(__dirname,"../views"))
+        res.sendFile(path.join(__dirname, 'public', 'index.html'));
     }
     catch (error) {
         res.send('nope')
