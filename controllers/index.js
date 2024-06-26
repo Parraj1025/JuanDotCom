@@ -10,7 +10,7 @@ router.use(express.static(path.join(__dirname, '../public')))
 
 router.get("/", (req,res) => {
     try {
-        res.status(200).sendFile(path.join(__dirname,"../public" , "index.html"))
+        res.status(200).render(path.join(__dirname,"../public" , "index.html"))
     }
     catch (error) {
         res.send()
