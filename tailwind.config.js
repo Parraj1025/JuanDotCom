@@ -1,5 +1,9 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./views"], // Adjust paths to your template files
-    theme: {},
-    plugins: [],
-  };
+  content: ["./views/*"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
