@@ -6,11 +6,11 @@ const express = require('express')
 
 router.use('/api', postRoutes);
 router.use('/api', userRoutes);
-router.use(express.static(path.join(__dirname, 'public')))
+router.use(express.static(path.join(__dirname, '../public')))
 
 router.get("/", (req,res) => {
     try {
-        res.status(200).sendFile(path.join(__dirname,"public" , "index.html"))
+        res.status(200).sendFile(path.join(__dirname,"../public" , "index.html"))
     }
     catch (error) {
         res.send()
