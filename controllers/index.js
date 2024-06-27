@@ -11,14 +11,7 @@ app.use(express.static('../public'));
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
 
-app.get("/", (req, res) => {
-    try {
-        res.render(path.join(__dirname,'../views', "index"))
-    }
-    catch (error) {
-        res.status(500).json(`${error}`)
-    }
-})
+
 
 module.exports = app
 
