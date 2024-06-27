@@ -16,7 +16,7 @@ app.set('view engine','ejs')
 
 router.get("/", (req,res) => {
     try {
-        res.status(200).render(path.join(__dirname,"../views" , "index.html"))
+        res.status(200).render(path.join(__dirname,"../views" , "layout.ejs"))
     }
     catch (error) {
         res.send()
