@@ -7,7 +7,7 @@ const expressLayouts = require('express-ejs-layouts')
 
 app.use("/api", postRoutes, userRoutes)
 
-app.use(express.static(path.join(__dirname , '../public/css/output.css')));
+app.use(express.static('../public'));
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
 
