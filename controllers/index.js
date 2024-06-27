@@ -9,12 +9,13 @@ app.use("/api", postRoutes, userRoutes)
 
 app.use(express.static(path.join(__dirname, '../public')))
 
+
 app.use(expressLayouts)
 app.set('view engine', 'ejs')
 
 app.get("/", (req, res) => {
     try {
-        res.render('../views/index.html')
+        res.render(path.join(__dirname,'../views', "index"))
     }
     catch (error) {
         res.status(500).json(`${error}`)
