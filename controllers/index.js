@@ -5,20 +5,20 @@ const express = require('express')
 const app = express();
 const expressLayouts = require('express-ejs-layouts')
 
-app.use("/api", postRoutes,userRoutes)
+app.use("/api", postRoutes, userRoutes)
 
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.use(expressLayouts)
-app.set('view engine','ejs')
+app.set('view engine', 'ejs')
 
-app.get("/", (req,res) => {
-    try{
-    res.render('../views/index.html')
-}
-catch (error) {
-    res.status(500).json('broke it')
-}
+app.get("/", (req, res) => {
+    try {
+        res.render('../views/index.html')
+    }
+    catch (error) {
+        res.status(500).json(`${error}`)
+    }
 })
 
 module.exports = app
