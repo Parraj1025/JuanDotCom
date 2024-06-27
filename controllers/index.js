@@ -14,7 +14,7 @@ app.set('view engine','ejs')
 
 app.get("/", (req,res) => {
     try{
-    res.render('index')
+    res.render('../views/index.ejs')
 }
 catch (error) {
     res.status(500).json('broke it')
