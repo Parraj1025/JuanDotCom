@@ -1,4 +1,3 @@
-const router = require('express').Router();
 const postRoutes = require('./api/postroute');
 const userRoutes = require('./api/UserRoutes');
 const path = require('path')
@@ -6,21 +5,20 @@ const express = require('express')
 const app = express();
 const expressLayouts = require('express-ejs-layouts')
 
+app.use("/api", postRoutes,userRoutes)
 
-router.use('/api', postRoutes);
-router.use('/api', userRoutes);
-router.use(express.static(path.join(__dirname, '../views')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.use(expressLayouts)
 app.set('view engine','ejs')
 
-router.get("/", (req,res) => {
-    try {
-        res.status(200).render(path.join(__dirname,"../views" , "layout.ejs"))
-    }
-    catch (error) {
-        res.send()
-    }
+app.get("/", (req,res) => {
+    try{
+    res.render('index')
+}
+catch (error) {
+    res.status(500).json('broke it')
+}
 })
 
 module.exports = router
