@@ -21,5 +21,5 @@ catch (error) {
 }
 })
 
-module.exports = router
+module.exports = app
 

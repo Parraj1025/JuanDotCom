@@ -1,11 +1,12 @@
 
-const router = require('express').Router();
+const express = require('express');
+const app = express();
 
 const sequelize = require('../../config/connection')
 //import the model
 const NewPost = require('../../models/posts');
 
-router.get('/posts', async (req, res) => {
+app.get('/posts', async (req, res) => {
     try{
        const allPosts = await NewPost.findAll()
 
@@ -22,7 +23,7 @@ router.get('/posts', async (req, res) => {
 }
 )
 
-router.post('/posts', async (req, res) => {
+app.post('/posts', async (req, res) => {
     try {
         const { username, post } = req.body
 
@@ -49,7 +50,7 @@ router.post('/posts', async (req, res) => {
 
 })
 
-router.delete('/posts', async (req, res) => {
+app.delete('/posts', async (req, res) => {
     try {
         const { id } = req.body
 
@@ -75,7 +76,7 @@ router.delete('/posts', async (req, res) => {
     }
 })
 
-router.put('/posts', async (req, res) => {
+app.put('/posts', async (req, res) => {
     try{
         const {id,post} = req.body
         if (!id || !post) {
@@ -97,4 +98,4 @@ router.put('/posts', async (req, res) => {
 
 
 
-module.exports = router
+module.exports = app
