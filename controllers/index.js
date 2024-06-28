@@ -6,7 +6,7 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts');
 
 app.use("/api", postRoutes, userRoutes)
-app.use(express.path.join(__dirname,"../public"))
+app.use(express.static(__dirname,"../public"))
 
 module.exports = app
 
