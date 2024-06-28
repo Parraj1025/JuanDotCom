@@ -16,17 +16,6 @@ app.use(routes)
 
 app.set("view engine", "ejs")
 
-app.use(express.static('/public'))
-
-app.get("/", (req, res) => {
-    try {
-        res.render(path.join(__dirname,'../views', "index"))
-    }
-    catch (error) {
-        res.status(500).json(`${error}`)
-    }
-})
-
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT,()=> {
         console.log('listening')
