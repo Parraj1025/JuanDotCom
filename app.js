@@ -14,7 +14,6 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(routes)
 
-app.set("view engine", "ejs")
 
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT,()=> {
