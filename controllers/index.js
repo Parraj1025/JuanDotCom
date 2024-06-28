@@ -6,7 +6,6 @@ const app = express();
 const expressLayouts = require('express-ejs-layouts');
 
 app.use("/api", postRoutes, userRoutes)
-app.use("/css", express.static(__dirname,"../public/assets"))
 
 module.exports = app
 
