@@ -11,7 +11,7 @@ app.use("/api", postRoutes, userRoutes)
 app.use(express.static('../public'));
 app.use(expressLayouts)
 
-app.use("/css", express.static(__dirname, "../public/assets/css"))
+app.use(express.static(__dirname, "../public/assets/css"))
 
 app.set('view engine', 'ejs')
 
