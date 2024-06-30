@@ -8,7 +8,7 @@ const expressLayouts = require('express-ejs-layouts');
 app.use("/api", postRoutes, userRoutes)
 
 app.get("/", (req,res) => {
-    res.render("layout")
+    res.render("index")
 })
 
 module.exports = app
