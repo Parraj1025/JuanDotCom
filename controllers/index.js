@@ -11,7 +11,7 @@ app.get("/", (req,res) => {
     res.render("index")
 })
 
-app.get("welcome", (req,res) => {
+app.get("/welcome", (req,res) => {
     res.render('welcome')
 })
 
