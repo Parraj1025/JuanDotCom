@@ -21,7 +21,7 @@ app.use("/css", express.static("./public/assets/css"))
 
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT,()=> {
-        console.log('listening')
+        console.log(`listening on ${PORT}`)
     })
 })
 
